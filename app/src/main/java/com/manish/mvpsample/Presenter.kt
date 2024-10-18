@@ -1,20 +1,25 @@
 package com.manish.mvpsample
 
+import android.util.Log
+
 class Presenter(private var mainView: Contract.View, private var model: Contract.Model) :
     Contract.Presenter, Contract.Model.OnFinishedListner {
 
 
     override fun onFinished(str: String?) {
-        mainView?.hideProgress()
+        Log.d("Manish", "inside Presenter onFinished: ")
+        mainView.hideProgress()
         mainView.setString(str)
     }
 
     override fun onButtonClickAction() {
-        mainView?.showProgress()
+        Log.d("Manish", "inside Presenter onButtonClickAction: ")
+
+        mainView.showProgress()
         model.getNewData(this)
     }
 
     override fun onDestroy() {
-        //NOOP
+        Log.d("Manish", "inside Presenter onDestroy: ")
     }
 }
